@@ -1,0 +1,10 @@
+//——————————————————————————————————————————————————————————————————————————————
+// Content paragraphs
+//——————————————————————————————————————————————————————————————————————————————
+
+// Ensure paragraphs clear floats
+//
+// @see https://humanitarian.atlassian.net/browse/GHO-40
+.node--type-article .field--name-field-paragraphs .field__item {
+  clear: both;
+}
