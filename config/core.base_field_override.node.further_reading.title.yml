@@ -1,0 +1,18 @@
+uuid: 66ce4012-5321-4e37-8c90-ea609a414d10
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.further_reading
+id: node.further_reading.title
+field_name: title
+entity_type: node
+bundle: further_reading
+label: 'Author / Organization'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

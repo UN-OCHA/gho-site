@@ -1,0 +1,22 @@
+uuid: 1d3a9e87-8f99-4755-9bd3-5980b8e4a0f4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.further_reading.field_further_reading
+    - paragraphs.paragraphs_type.further_reading
+id: paragraph.further_reading.default
+targetEntityType: paragraph
+bundle: further_reading
+mode: default
+content:
+  field_further_reading:
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+hidden: {  }

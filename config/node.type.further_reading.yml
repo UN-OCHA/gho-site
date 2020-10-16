@@ -1,0 +1,17 @@
+uuid: 92d1ceca-8555-4a99-b99b-cacd3801ccfa
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Further reading'
+type: further_reading
+description: 'A list of external links for more info relating to a given Article.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

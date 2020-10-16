@@ -1,0 +1,19 @@
+uuid: a2091b25-e7bc-4aac-9d84-c0fb05dccf42
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_further_source
+    - node.type.further_reading
+id: node.further_reading.field_further_source
+field_name: field_further_source
+entity_type: node
+bundle: further_reading
+label: 'Author / Organization'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

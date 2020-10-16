@@ -1,0 +1,22 @@
+uuid: c944e6fc-c22e-49a8-a936-1d035050aee5
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.further_reading
+id: node.further_reading.status
+field_name: status
+entity_type: node
+bundle: further_reading
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

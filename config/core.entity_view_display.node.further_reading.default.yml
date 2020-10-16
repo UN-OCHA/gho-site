@@ -1,0 +1,39 @@
+uuid: 283ce13d-f00c-43fd-b3d4-abf71265035c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.further_reading.field_further_source
+    - field.field.node.further_reading.field_further_url
+    - node.type.further_reading
+  module:
+    - link
+    - user
+id: node.further_reading.default
+targetEntityType: node
+bundle: further_reading
+mode: default
+content:
+  field_further_source:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_further_url:
+    weight: 0
+    label: hidden
+    settings:
+      trim_length: null
+      rel: nofollow
+      url_only: false
+      url_plain: false
+      target: '0'
+    third_party_settings: {  }
+    type: link
+    region: content
+hidden:
+  langcode: true
+  links: true

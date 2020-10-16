@@ -1,0 +1,52 @@
+uuid: ec2f6771-af5a-4619-8b79-760f303ffa96
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.further_reading.field_further_source
+    - field.field.node.further_reading.field_further_url
+    - node.type.further_reading
+  module:
+    - link
+id: node.further_reading.default
+targetEntityType: node
+bundle: further_reading
+mode: default
+content:
+  field_further_url:
+    weight: 1
+    settings:
+      placeholder_url: 'https://example.com'
+      placeholder_title: 'Enter the title here'
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: 'Mark Lowcock / OCHA'
+    third_party_settings: {  }
+  translation:
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_further_source: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true
+  url_redirects: true

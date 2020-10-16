@@ -1,0 +1,25 @@
+uuid: 247bde36-5310-43d5-a658-f1e6edd425b5
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.further_reading.field_further_source
+    - field.field.node.further_reading.field_further_url
+    - node.type.further_reading
+  module:
+    - user
+id: node.further_reading.teaser
+targetEntityType: node
+bundle: further_reading
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_further_source: true
+  field_further_url: true
+  langcode: true

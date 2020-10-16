@@ -1,0 +1,10 @@
+uuid: b54d2bee-bccc-4645-a8eb-7326c4476d14
+langcode: en
+status: true
+dependencies: {  }
+id: further_reading
+label: 'Further reading'
+icon_uuid: null
+icon_default: null
+description: 'External links related to an article.'
+behavior_plugins: {  }

@@ -8,6 +8,7 @@ dependencies:
     - paragraphs.paragraphs_type.bottom_figure_row
     - paragraphs.paragraphs_type.facts_and_figures
     - paragraphs.paragraphs_type.field_story
+    - paragraphs.paragraphs_type.further_reading
     - paragraphs.paragraphs_type.layout
     - paragraphs.paragraphs_type.photo_gallery
     - paragraphs.paragraphs_type.separator
@@ -29,36 +30,40 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      bottom_figure_row: bottom_figure_row
       layout: layout
+      text: text
       facts_and_figures: facts_and_figures
       field_story: field_story
-      text: text
       photo_gallery: photo_gallery
+      bottom_figure_row: bottom_figure_row
+      further_reading: further_reading
       separator: separator
     target_bundles_drag_drop:
       bottom_figure_row:
         enabled: true
-        weight: 8
+        weight: -14
       facts_and_figures:
         enabled: true
-        weight: 9
+        weight: -17
       field_story:
         enabled: true
-        weight: 10
+        weight: -16
+      further_reading:
+        enabled: true
+        weight: -13
       image_with_text:
-        weight: 12
+        weight: -11
         enabled: false
       layout:
         enabled: true
-        weight: 8
+        weight: -19
       photo_gallery:
         enabled: true
-        weight: 11
+        weight: -15
       separator:
         enabled: true
-        weight: 15
+        weight: -12
       text:
         enabled: true
-        weight: 10
+        weight: -18
 field_type: entity_reference_revisions

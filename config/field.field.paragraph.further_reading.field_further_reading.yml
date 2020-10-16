@@ -1,0 +1,28 @@
+uuid: e1739a50-a318-4517-b84d-594f342ef29d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_further_reading
+    - node.type.further_reading
+    - paragraphs.paragraphs_type.further_reading
+id: paragraph.further_reading.field_further_reading
+field_name: field_further_reading
+entity_type: paragraph
+bundle: further_reading
+label: 'List of links for Further Reading'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      further_reading: further_reading
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

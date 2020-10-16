@@ -19,4 +19,5 @@ permissions:
   - 'view published author media'
   - 'view published document media'
   - 'view published field_story content'
+  - 'view published further_reading content'
   - 'view published image media'
