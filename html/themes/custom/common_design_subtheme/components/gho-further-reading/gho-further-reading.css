@@ -1,0 +1,50 @@
+/**
+ * Base styles
+ */
+.gho-further-reading {
+  max-width: 768px;
+  border-top: 1px solid #ccc;
+  position: relative; /* for pseudo positioning */
+}
+
+/**
+ * Style last link in list
+ */
+.gho-further-reading:last-child {
+  border-bottom: 1px solid #ccc;
+}
+
+/**
+ * Actual hyperlink
+ *
+ * It's styled as a block element to allow all aspects of the component to be
+ * clickable: the chevron and authorship line.
+ */
+.gho-further-reading__link a {
+  display: block;
+  font-weight: 700;
+  padding: 1rem 0 3rem;
+}
+.gho-further-reading__link a::after {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5em;
+  font-weight: 400;
+}
+@media screen and (min-width: 576px) {
+  .gho-further-reading__link a::after {
+    content: '›';
+  }
+  [dir='ltr'] .gho-further-reading__link a::after {
+    right: 1rem;
+  }
+  [dir='rtl'] .gho-further-reading__link a::after {
+    left: 1rem;
+  }
+}
+
+.gho-further-reading__source {
+  margin-top: -3rem;
+  margin-bottom: 1rem;
+}
