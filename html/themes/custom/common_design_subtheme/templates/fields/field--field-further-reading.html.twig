@@ -44,11 +44,15 @@
     'field--type-' ~ field_type|clean_class,
     'field--label-' ~ label_display,
     label_display == 'inline' ? 'clearfix',
+    'gho-further-reading',
   ]
 %}
 
 <div{{ attributes.addClass(classes) }}>
-  {% for item in items %}
-    {{ item.content }}
-  {% endfor %}
+  <p class="gho-further-reading__title">{{ 'Further reading'|t }}</p>
+  <div class="gho-further-reading__items">
+    {% for item in items %}
+      {{ item.content }}
+    {% endfor %}
+  </div>
 </div>

@@ -3,6 +3,22 @@
  */
 .gho-further-reading {
   max-width: 768px;
+  margin-bottom: 1rem;
+}
+
+/**
+ * Title
+ */
+.gho-further-reading__title {
+  color: #000;
+  font-size: 1.25em;
+  font-weight: 700;
+}
+
+/**
+ * List item
+ */
+.gho-further-reading__item {
   border-top: 1px solid #ccc;
   position: relative; /* for pseudo positioning */
 }
@@ -10,7 +26,7 @@
 /**
  * Style last link in list
  */
-.gho-further-reading:last-child {
+.gho-further-reading__item:last-child {
   border-bottom: 1px solid #ccc;
 }
 
@@ -44,6 +60,9 @@
   }
 }
 
+/**
+ * Author / Organization
+ */
 .gho-further-reading__source {
   margin-top: -3rem;
   margin-bottom: 1rem;
