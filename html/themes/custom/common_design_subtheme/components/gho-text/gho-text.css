@@ -1,0 +1,8 @@
+/**
+ * Base styles
+ */
+.paragraph--type--text {
+  /* our reading-width is 80% of the desktop layout but we want that limit to
+     be hit once and never wiggle around due to our CD borders and such. */
+  max-width: 820px; /* 1024 * .8 = 819.2 */
+}
