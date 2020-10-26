@@ -57,6 +57,7 @@ module:
   system: 0
   taxonomy: 0
   text: 0
+  title_field_for_manage_display: 0
   token: 0
   toolbar: 0
   update: 0

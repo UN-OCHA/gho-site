@@ -44,6 +44,7 @@
         "drupal/pathauto": "^1.8",
         "drupal/redirect": "^1.6",
         "drupal/social_auth_hid": "^2.5",
+        "drupal/title_field_for_manage_display": "^1.12",
         "drush/drush": "^10.2.2",
         "oomphinc/composer-installers-extender": "^1.1.2",
         "unocha/common_design": "^2.8.3",

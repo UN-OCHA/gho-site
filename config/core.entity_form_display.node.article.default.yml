@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.article.field_appeals
     - field.field.node.article.field_author
+    - field.field.node.article.field_display_title
     - field.field.node.article.field_further_reading
     - field.field.node.article.field_hero_image
     - field.field.node.article.field_paragraphs
@@ -131,6 +132,7 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_display_title: true
   promote: true
   sticky: true
   uid: true

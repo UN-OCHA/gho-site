@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.story.field_display_title
     - field.field.node.story.field_media
     - field.field.node.story.field_text
     - field.field.node.story.field_type
@@ -41,5 +42,6 @@ content:
       link: false
     third_party_settings: {  }
 hidden:
+  field_display_title: true
   langcode: true
   links: true

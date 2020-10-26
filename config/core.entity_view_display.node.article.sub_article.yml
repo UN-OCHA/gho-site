@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.sub_article
     - field.field.node.article.field_appeals
     - field.field.node.article.field_author
+    - field.field.node.article.field_display_title
     - field.field.node.article.field_further_reading
     - field.field.node.article.field_hero_image
     - field.field.node.article.field_paragraphs
@@ -17,6 +18,8 @@ dependencies:
     - gho_fields
     - layout_builder
     - layout_paragraphs
+    - text
+    - title_field_for_manage_display
     - user
 third_party_settings:
   layout_builder:
@@ -38,15 +41,25 @@ content:
     region: content
   field_author:
     type: entity_reference_entity_view
-    weight: 3
+    weight: 4
     label: hidden
     settings:
       view_mode: default
       link: false
     third_party_settings: {  }
     region: content
+  field_display_title:
+    type: title_value_field_formatter
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      tag: h1
+      classes: article__main-title
+      linked: 0
+    third_party_settings: {  }
   field_further_reading:
-    weight: 5
+    weight: 7
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -62,7 +75,7 @@ content:
     third_party_settings: {  }
     region: content
   field_paragraphs:
-    weight: 4
+    weight: 6
     label: hidden
     settings:
       view_mode: default
@@ -71,7 +84,7 @@ content:
     type: layout_paragraphs
     region: content
   field_related_articles:
-    weight: 6
+    weight: 8
     label: above
     settings:
       view_mode: related_article
@@ -79,12 +92,18 @@ content:
     third_party_settings: {  }
     type: entity_reference_entity_view
     region: content
+  field_summary:
+    type: text_default
+    weight: 5
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
   links:
     weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_summary: true
   field_thumbnail_image: true
   langcode: true

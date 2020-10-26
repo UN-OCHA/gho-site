@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.article.field_appeals
     - field.field.node.article.field_author
+    - field.field.node.article.field_display_title
     - field.field.node.article.field_further_reading
     - field.field.node.article.field_hero_image
     - field.field.node.article.field_paragraphs
@@ -66,7 +67,7 @@ content:
     region: content
   field_related_articles:
     weight: 6
-    label: hidden
+    label: above
     settings:
       view_mode: related_article
       link: false
@@ -79,6 +80,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_display_title: true
   field_summary: true
   field_thumbnail_image: true
   langcode: true

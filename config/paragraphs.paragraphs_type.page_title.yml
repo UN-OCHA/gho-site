@@ -1,0 +1,12 @@
+uuid: 809ddcdf-ce58-4714-8f16-3bb15a94bae5
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: cs_VNkXnGA4DXeV-6TloLXhEEfV8KiLmb0ETMu5T-5Q
+id: page_title
+label: 'Page title'
+icon_uuid: null
+icon_default: null
+description: 'Placeholder paragraph that will display the page title.'
+behavior_plugins: {  }
