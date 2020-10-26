@@ -48,6 +48,8 @@ gho-sub-article:
   css:
     theme:
       components/gho-sub-article/gho-sub-article.css: {}
+  dependencies:
+    - common_design_subtheme/gho-bleed
 
 gho-footnotes:
   css:
