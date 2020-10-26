@@ -44,6 +44,11 @@ gho-related-article:
     theme:
       components/gho-related-article/gho-related-article.css: {}
 
+gho-sub-article:
+  css:
+    theme:
+      components/gho-sub-article/gho-sub-article.css: {}
+
 gho-footnotes:
   css:
     theme:

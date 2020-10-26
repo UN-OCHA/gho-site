@@ -1,0 +1,10 @@
+uuid: d4aee9cc-5421-4b97-8a20-2e527454ffb3
+langcode: en
+status: true
+dependencies: {  }
+id: sub_article
+label: Sub-Article
+icon_uuid: null
+icon_default: null
+description: 'Allows a Standard Article page to include several Sub-Articles.'
+behavior_plugins: {  }

@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override to display an Article node in Related Article view mode.
+ * Theme override to display an Article node in Sub-Article view mode.
  *
  * Available variables:
  * - node: The node entity with limited access to object properties and methods.
@@ -70,7 +70,7 @@
  *   in different view modes.
  */
 #}
-{{ attach_library('common_design_subtheme/gho-related-article') }}
+{{ attach_library('common_design_subtheme/gho-sub-article') }}
 {%
   set classes = [
     'node',
@@ -79,15 +79,32 @@
     node.isSticky() ? 'node--sticky',
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-    'gho-related-article',
+    'gho-sub-article',
     'clearfix',
   ]
 %}
 <article{{ attributes.addClass(classes) }}>
-  <h3{{ title_attributes.addClass('gho-related-article__title') }}>
-    <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-  </h3>
 
-  {{ content }}
-  <a href="{{ url }}" class="read-article">{{ 'Read article'|t }}</a>
+  {{ title_prefix }}
+  {% if label and not page %}
+    <h2{{ title_attributes }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+  {{ title_suffix }}
+
+  {% if display_submitted %}
+    <footer class="node__meta">
+      {{ author_picture }}
+      <div{{ author_attributes.addClass('node__submitted') }}>
+        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+        {{ metadata }}
+      </div>
+    </footer>
+  {% endif %}
+
+  <div{{ content_attributes.addClass('node__content') }}>
+    {{ content }}
+  </div>
+
 </article>

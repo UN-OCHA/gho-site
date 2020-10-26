@@ -11,6 +11,7 @@ dependencies:
     - paragraphs.paragraphs_type.photo_gallery
     - paragraphs.paragraphs_type.separator
     - paragraphs.paragraphs_type.story
+    - paragraphs.paragraphs_type.sub_article
     - paragraphs.paragraphs_type.text
   module:
     - entity_reference_revisions
@@ -32,6 +33,7 @@ settings:
       bottom_figure_row: bottom_figure_row
       layout: layout
       facts_and_figures: facts_and_figures
+      sub_article: sub_article
       story: story
       text: text
       photo_gallery: photo_gallery
@@ -56,6 +58,9 @@ settings:
         enabled: true
         weight: 15
       story:
+        enabled: true
+        weight: 10
+      sub_article:
         enabled: true
         weight: 10
       text:

@@ -1,0 +1,10 @@
+uuid: 645ef422-f312-45b5-b58f-d0df8e4ff974
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.sub_article
+label: Sub-Article
+targetEntityType: node
+cache: true
