@@ -1,3 +1,10 @@
+.gho-needs-and-requirements__title {
+  color: #111;
+  font-size: 1.25em;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: -2rem;
+}
 .gho-needs-and-requirements {
   margin-top: 2em;
   margin-bottom: 2em;
@@ -7,6 +14,9 @@
   border-style: solid;
   border-color: #ccc;
   border-width: 1px 0 0 0;
+}
+.gho-needs-and-requirements-figure:first-child {
+  border-width: 0;
 }
 .gho-needs-and-requirements-figure__label {
   font-weight: bold;
@@ -22,6 +32,10 @@
 }
 
 @media (min-width: 768px) {
+  .gho-needs-and-requirements__title {
+    margin-top: 2rem;
+    margin-bottom: 0;
+  }
   .gho-needs-and-requirements {
     display: flex;
     justify-content: space-between;
