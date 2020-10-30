@@ -29,6 +29,7 @@
   font-weight: bold;
   font-size: 2.25em;
   color: #5391cb;
+  white-space: nowrap;
 }
 
 @media (min-width: 768px) {
@@ -46,6 +47,9 @@
     border-width: 0 0 0 1px;
     padding: 0 1.5rem;
   }
+  .gho-needs-and-requirements-figure__value {
+    font-size: 1.875em;
+  }
   [dir="ltr"] .gho-needs-and-requirements-figure:first-child {
     border-width: 0;
     padding-left: 0;
@@ -55,5 +59,10 @@
   }
   [dir="rtl"] .gho-needs-and-requirements-figure:last-child {
     border-width: 0;
+  }
+}
+@media (min-width: 1024px) {
+  .gho-needs-and-requirements-figure__value {
+    font-size: 2.25em;
   }
 }
