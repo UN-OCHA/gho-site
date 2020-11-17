@@ -33,6 +33,12 @@ regions:
 
 # Override libraries.
 libraries-override:
+  # Don't load the common design styles.css as its rules are included in ours.
+  common_design/global-styling:
+    css:
+      theme:
+        css/styles.css: ''
+
   # Overrides the layouts.
   # @todo: put that in the common_design theme instead?
   layout_builder/twocol_section:

@@ -1,11 +1,78 @@
+// Load the base theme variables and then the override from the subtheme.
+@import '../../../contrib/common_design/sass/cd/cd-variables';
+@import 'cd/cd-variables';
+
+//——————————————————————————————————————————————————————————————————————————————
+// Load everything from Common Design Theme except cd-variables.
+//——————————————————————————————————————————————————————————————————————————————
+@import '../../../contrib/common_design/sass/cd/cd-extends';
+@import '../../../contrib/common_design/sass/cd/cd-mixins';
+@import '../../../contrib/common_design/sass/cd/cd-resets';
+@import '../../../contrib/common_design/sass/cd/cd-icons';
+@import '../../../contrib/common_design/sass/cd/cd-print';
+
+// Layout
+@import '../../../contrib/common_design/sass/cd/cd-layout/cd-layout';
+@import '../../../contrib/common_design/sass/cd/cd-layout/cd-skip-link';
+
+// Header
+@import '../../../contrib/common_design/sass/cd/cd-header/cd-header';
+@import '../../../contrib/common_design/sass/cd/cd-header/cd-dropdowns';
+@import '../../../contrib/common_design/sass/cd/cd-header/cd-menu--main';
+@import '../../../contrib/common_design/sass/cd/cd-header/cd-global-header';
+@import '../../../contrib/common_design/sass/cd/cd-header/cd-user-menu';
+@import '../../../contrib/common_design/sass/cd/cd-header/cd-ocha';
+@import '../../../contrib/common_design/sass/cd/cd-header/cd-logo';
+@import '../../../contrib/common_design/sass/cd/cd-header/cd-nav';
+@import '../../../contrib/common_design/sass/cd/cd-header/cd-search';
+@import '../../../contrib/common_design/sass/cd/cd-header/cd-search--inline';
+@import '../../../contrib/common_design/sass/cd/cd-header/cd-search-drupal';
+@import '../../../contrib/common_design/sass/cd/cd-header/cd-language-switcher';
+
+// Footer
+@import '../../../contrib/common_design/sass/cd/cd-footer/cd-footer';
+@import '../../../contrib/common_design/sass/cd/cd-footer/cd-footer-copyright';
+@import '../../../contrib/common_design/sass/cd/cd-footer/cd-footer-menu';
+@import '../../../contrib/common_design/sass/cd/cd-footer/cd-mandate';
+@import '../../../contrib/common_design/sass/cd/cd-footer/cd-footer-social';
+@import '../../../contrib/common_design/sass/cd/cd-footer/cd-soft-footer';
+
+@import '../../../contrib/common_design/sass/base/_base';
+@import '../../../contrib/common_design/sass/base/_grid';
+@import '../../../contrib/common_design/sass/base/_helpers';
+@import '../../../contrib/common_design/sass/base/_typography';
+
+
 //——————————————————————————————————————————————————————————————————————————————
 // Common Design
 //
 // Imports everything in the `cd` folder and ensures that the templates provided
 // in this theme for the Header/Footer will carry Common Design branding.
 //——————————————————————————————————————————————————————————————————————————————
-@import 'cd/cd';
+// Sass utilities
+@import 'cd/cd-mixins';
+@import 'cd/cd-resets';
 
+// Layout
+@import 'cd/cd-layout/cd-layout';
+
+// Header
+@import 'cd/cd-header/cd-dropdowns';
+@import 'cd/cd-header/cd-header';
+@import 'cd/cd-header/cd-language-switcher';
+@import 'cd/cd-header/cd-logo';
+@import 'cd/cd-header/cd-menu--main';
+@import 'cd/cd-header/cd-nav';
+@import 'cd/cd-header/cd-ocha';
+@import 'cd/cd-header/cd-search';
+@import 'cd/cd-header/cd-user-menu';
+
+// Footer
+@import 'cd/cd-footer/cd-footer';
+@import 'cd/cd-footer/cd-footer-menu';
+@import 'cd/cd-footer/cd-footer-copyright';
+@import 'cd/cd-footer/cd-soft-footer';
+@import 'cd/cd-footer/cd-mandate';
 
 //——————————————————————————————————————————————————————————————————————————————
 // Theme extras
