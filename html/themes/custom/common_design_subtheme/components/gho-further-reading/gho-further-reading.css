@@ -12,14 +12,10 @@
  */
 .gho-further-reading__title {
   margin: 0 0 1.5rem 0;
-  font-size: 1.25rem;
+  font-size: 1.5em;
+  line-height: 1.25;
   font-weight: 700;
   color: #1f1f1f;
-}
-@media (min-width: 1024px) {
-  .gho-further-reading__title {
-    font-size: 1.5rem;
-  }
 }
 
 /**
