@@ -1,0 +1,73 @@
+.gho-search-container {
+  display: flex;
+}
+
+.gho-search-container .form-type-search {
+  flex: 1 1 auto;
+  margin: 0;
+}
+
+/* Restore things removed by normalize.css */
+input[type="search"].gho-search-input {
+  appearance: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+}
+input[type="search"].gho-search-input::-webkit-search-cancel-button,
+input[type="search"].gho-search-input::-webkit-search-decoration {
+  -webkit-appearance: auto;
+}
+
+.gho-search-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #1f1f1f;
+  border-width: 1px 0 1px 1px;
+}
+.gho-search-input:focus {
+   outline: 3px solid #1a344a
+}
+[dir="rtl"] .gho-search-input {
+  border-width: 1px 1px 1px 0;
+}
+
+.gho-search-submit {
+  padding: 10px 14px;
+  border: 1px solid #1a344a;
+  background: #1a344a;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.gho-search-submit:hover,
+.gho-search-submit:focus {
+  border-color: #026cb6;
+  background: #026cb6;
+  outline: 3px solid #1a344a
+}
+
+.gho-search-help-link {
+  margin-top: 0.25rem;
+}
+
+/* Drupal search module doesn't give us a easy way to alter the search results
+ * title... */
+.gho-search-form + h2  {
+  color: #1f1f1f;
+  font-weight: 700;
+}
+
+.gho-search-results ol {
+  padding: 0;
+}
+
+.gho-search-results li {
+  margin: 2rem;
+  padding: 0;
+}
+
+.gho-search-results h3 {
+  color: #1f1f1f;
+  font-weight: 700;
+}

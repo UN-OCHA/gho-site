@@ -2,14 +2,16 @@
 // Common Design: Search
 //——————————————————————————————————————————————————————————————————————————————
 .cd-search__btn {
-  color: $implementation-primary;
+  height: 70px;
+  color: $cd-dark-grey;
 
   svg {
-    fill: $implementation-primary;
+    fill: $cd-dark-grey;
   }
 
   &:hover,
-  &:focus {
+  &:focus,
+  &[aria-expanded='true'] {
     color: $implementation-primary-dark;
 
     svg {
@@ -17,25 +19,31 @@
     }
   }
 
-  &:focus {
-    color: $implementation-highlight;
-
+  // Reset upstream to always use the "large" icon as we don't have space
+  // to display the icon + the text.
+  @include desktop {
     svg {
-      fill: $implementation-highlight;
+      width: 26px;
+      height: 26px;
+      padding: 0;
     }
-  }
 
-  &[aria-expanded='true'] {
-    color: $implementation-highlight;
-
-    svg {
-      fill: $implementation-highlight;
+    .cd-search__btn-label {
+      @include visually-hidden;
     }
   }
 }
 
+.cd-search__form {
+  left: 0;
+  right: 0;
+}
+
 .cd-search__submit {
+  background-color: $implementation-secondary;
+
+  &:hover,
   &:focus {
-    background-color: $implementation-highlight;
+    background-color: $implementation-primary-dark;
   }
 }

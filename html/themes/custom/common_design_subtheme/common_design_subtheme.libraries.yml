@@ -146,3 +146,8 @@ gho-article-list:
   css:
     theme:
       components/gho-article-list/gho-article-list.css: {}
+
+gho-search:
+  css:
+    theme:
+      components/gho-search/gho-search.css: {}

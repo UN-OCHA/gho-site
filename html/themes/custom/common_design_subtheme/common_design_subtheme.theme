@@ -7,6 +7,7 @@
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Access\AccessResultInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Menu\MenuTreeParameters;
 use Drupal\Core\Menu\InaccessibleMenuLink;
 use Drupal\Core\Template\Attribute;
@@ -519,4 +520,42 @@ function common_design_subtheme_get_block_render_array($id, $translate = TRUE) {
 function common_design_subtheme_preprocess_block(&$variables) {
   $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
   $variables['language'] = $language;
+}
+
+/**
+ * Implements hook_form_search_form_alter().
+ *
+ * Add some slight improvements to the search input on the search page
+ * and add some classes for easier styling.
+ */
+function common_design_subtheme_form_search_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['#attributes']['class'][] = 'gho-search-form';
+  $form['basic']['#attributes']['class'][] = 'gho-search-container';
+  $form['basic']['keys']['#attributes']['class'][] = 'gho-search-input';
+  $form['basic']['keys']['#attributes']['placeholder'] = $form['basic']['keys']['#title'];
+  $form['basic']['keys']['#title_display'] = 'invisible';
+  $form['basic']['submit']['#attributes']['class'][] = 'gho-search-submit';
+  // Adding the class to the link via '#attributes' doesn't work...
+  $form['help_link']['#prefix'] = '<div class="gho-search-help-link">';
+  $form['help_link']['#suffix'] = '</div>';
+}
+
+/**
+ * Implements hook_preprocess_page__search().
+ *
+ * Replace the page title for the search page because it can be very long when
+ * there are lots of keywords.
+ */
+function common_design_subtheme_preprocess_page__search(&$variables) {
+  $title = common_design_subtheme_get_block_render_array('page_title_block');
+  $variables['page']['content']['common_design_subtheme_page_title'] = $title;
+}
+
+/**
+ * Implements hook_preprocess_page__search().
+ *
+ * Add a class to the search results to ease styling.
+ */
+function common_design_subtheme_preprocess_item_list__search_results(&$variables) {
+  $variables['wrapper_attributes']->addClass('gho-search-results');
 }
