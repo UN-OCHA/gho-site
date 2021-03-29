@@ -4,9 +4,10 @@ namespace Drupal\ocha_datawrapper\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Markup;
 
 /**
- * Class ChartOverviewForm.
+ * Get a list of charts.
  */
 class ChartOverviewForm extends FormBase {
 
@@ -21,13 +22,14 @@ class ChartOverviewForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    // phpcs:ignore
     $http_client = \Drupal::httpClient();
     $response = $http_client->request(
       'GET',
       'https://api.datawrapper.de/v3/charts',
       [
         'headers' => [
-          'authorization' => 'Bearer ' . $this->config('ocha_datawrapper.chartoverview')->get('api_key')
+          'authorization' => 'Bearer ' . $this->config('ocha_datawrapper.chartoverview')->get('api_key'),
         ],
       ]
     );
@@ -42,7 +44,7 @@ class ChartOverviewForm extends FormBase {
 
     $form['charts'] = [
       '#type' => 'markup',
-      '#markup' => \Drupal\Core\Render\Markup::create('<ul><li>' . implode('</li><li>', $items) . '</li></ul>'),
+      '#markup' => Markup::create('<ul><li>' . implode('</li><li>', $items) . '</li></ul>'),
     ];
 
     $form['chart_name'] = [
@@ -54,7 +56,7 @@ class ChartOverviewForm extends FormBase {
     $form['chart_data'] = [
       '#type' => 'textfield',
       '#title' => 'URL of the data',
-      '#description' => 'Should be a list of availabel sources',
+      '#description' => $this->t('Should be a list of availabel sources'),
       '#required' => TRUE,
     ];
 
@@ -62,9 +64,9 @@ class ChartOverviewForm extends FormBase {
       '#type' => 'radios',
       '#title' => 'Type of the chart',
       '#options' => [
-        'tables' => 'Table',
-        'd3-bars-stacked' => 'Stacked bars',
-        'd3-bars-split' => 'Split bars'
+        'tables' => $this->t('Table'),
+        'd3-bars-stacked' => $this->t('Stacked bars'),
+        'd3-bars-split' => $this->t('Split bars'),
       ],
       '#required' => TRUE,
     ];
@@ -80,31 +82,17 @@ class ChartOverviewForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function validateForm(array &$form, FormStateInterface $form_state) {
-    foreach ($form_state->getValues() as $key => $value) {
-      // @TODO: Validate fields.
-    }
-    parent::validateForm($form, $form_state);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // Display result.
-    foreach ($form_state->getValues() as $key => $value) {
-      \Drupal::messenger()->addMessage($key . ': ' . ($key === 'text_format'?$value['value']:$value));
-    }
-
     $values = $form_state->getValues();
 
+    // phpcs:ignore
     $http_client = \Drupal::httpClient();
     $response = $http_client->request(
       'POST',
       'https://api.datawrapper.de/v3/charts',
       [
         'headers' => [
-          'authorization' => 'Bearer ' . $this->config('ocha_datawrapper.chartoverview')->get('api_key')
+          'authorization' => 'Bearer ' . $this->config('ocha_datawrapper.chartoverview')->get('api_key'),
         ],
         'body' => json_encode([
           'title' => $values['chart_name'],
@@ -121,10 +109,10 @@ class ChartOverviewForm extends FormBase {
     $chart_id = $body['id'];
     $response = $http_client->request(
       'POST',
-      'https://api.datawrapper.de/v3/charts/'. $chart_id .'/publish',
+      'https://api.datawrapper.de/v3/charts/' . $chart_id . '/publish',
       [
         'headers' => [
-          'authorization' => 'Bearer ' . $this->config('ocha_datawrapper.chartoverview')->get('api_key')
+          'authorization' => 'Bearer ' . $this->config('ocha_datawrapper.chartoverview')->get('api_key'),
         ],
         'body' => json_encode([
           'title' => $values['chart_name'],
