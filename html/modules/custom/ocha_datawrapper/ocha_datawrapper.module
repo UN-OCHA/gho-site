@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains ocha_datawrapper.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function ocha_datawrapper_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the ocha_datawrapper module.
+    case 'help.page.ocha_datawrapper':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Datawrapper integration') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function ocha_datawrapper_theme() {
+  return [
+    'ocha_datawrapper' => [
+      'render element' => 'children',
+    ],
+  ];
+}
