@@ -56,7 +56,7 @@ class ChartOverviewForm extends FormBase {
     $form['chart_data'] = [
       '#type' => 'textfield',
       '#title' => 'URL of the data',
-      '#description' => $this->t('Should be a list of availabel sources'),
+      '#description' => $this->t('Should be a list of available sources'),
       '#required' => TRUE,
     ];
 
