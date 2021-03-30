@@ -1,0 +1,22 @@
+uuid: 059b6d08-345e-4bf7-a8a2-041d04e704c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.datawrapper_chart.field_para_chart
+    - paragraphs.paragraphs_type.datawrapper_chart
+  module:
+    - options
+id: paragraph.datawrapper_chart.default
+targetEntityType: paragraph
+bundle: datawrapper_chart
+mode: default
+content:
+  field_para_chart:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+hidden: {  }

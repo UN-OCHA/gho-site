@@ -1,0 +1,10 @@
+uuid: 2b29b366-5748-43c0-8d00-a7fef9c97891
+langcode: en
+status: true
+dependencies: {  }
+id: datawrapper_chart
+label: 'Datawrapper chart'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }
