@@ -13,12 +13,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * POC behavior plugin.
  *
  * @ParagraphsBehavior(
- *   id="ocha_datawrapper_demo_behavior",
- *   label=@Translation("Datawrapper options"),
- *   description=@Translation("A Plugin to set datawrapper options (demo)")
+ *   id="ocha_datawrapper_data_behavior",
+ *   label=@Translation("Datawrapper data"),
+ *   description=@Translation("A Plugin to select the data (demo)")
  * )
  */
-class ParagraphsDatawrapperBehavior extends ParagraphsBehaviorBase {
+class ParagraphsHumDataBehavior extends ParagraphsBehaviorBase {
 
   /**
    * {@inheritdoc}
@@ -42,14 +42,14 @@ class ParagraphsDatawrapperBehavior extends ParagraphsBehaviorBase {
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
     $form['wrapper'] = [
       '#type' => 'fieldset',
-      '#title' => $this->t('General styling'),
+      '#title' => $this->t('Data source options'),
     ];
 
     $form['wrapper']['map_style'] = [
       '#type' => 'select',
-      '#title' => $this->t('Map style'),
+      '#title' => $this->t('Source'),
       '#options' => [
-        'a' => $this->t('Style 1'),
+        'a' => $this->t('Plan'),
         'b' => $this->t('Style 2'),
         'c' => $this->t('Style 3'),
       ],
@@ -57,23 +57,23 @@ class ParagraphsDatawrapperBehavior extends ParagraphsBehaviorBase {
     ];
 
     $form['wrapper']['default_attachment'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Default attachment'),
+      '#type' => 'checkboxes',
+      '#title' => $this->t('Columns'),
       '#options' => [
-        'a' => $this->t('Attachment 1'),
-        'b' => $this->t('Attachment 2'),
-        'c' => $this->t('Attachment 3'),
+        'a' => $this->t('Col 1'),
+        'b' => $this->t('Col 2'),
+        'c' => $this->t('Col 3'),
       ],
       '#default_value' => $paragraph->getBehaviorSetting($this->pluginId, 'default_attachment', 'b'),
     ];
 
     $form['wrapper']['monitoring_period'] = [
       '#type' => 'select',
-      '#title' => $this->t('Monitoring period'),
+      '#title' => $this->t('Some filters'),
       '#options' => [
-        'a' => $this->t('Period 1'),
-        'b' => $this->t('Period 2'),
-        'c' => $this->t('Period 3'),
+        'a' => $this->t('Filter 1'),
+        'b' => $this->t('Filter 2'),
+        'c' => $this->t('Filter 3'),
       ],
       '#default_value' => $paragraph->getBehaviorSetting($this->pluginId, 'monitoring_period', 'c'),
     ];

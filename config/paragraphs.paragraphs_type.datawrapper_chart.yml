@@ -10,9 +10,7 @@ icon_uuid: null
 icon_default: null
 description: ''
 behavior_plugins:
+  ocha_datawrapper_data_behavior:
+    enabled: true
   ocha_datawrapper_demo_behavior:
     enabled: true
-    map_style: a
-    default_attachment:
-      b: b
-    monitoring_period: c
