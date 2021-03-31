@@ -34,43 +34,43 @@ class ParagraphsMapBehavior extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function view(array &$build, Paragraph $paragraph, EntityViewDisplayInterface $display, $view_mode) {
+    $build['page_markup'] = [
+      '#markup' => $paragraph->getBehaviorSetting($this->pluginId, 'page', 1),
+    ];
     return $build;
   }
 
   /**
-   * {@inheritdoc}
+   * Get the default settings for the behavior form.
+   *
+   * @param \Drupal\paragraphs\Entity\ParagraphInterface $paragraph
+   *   The paragraph entity.
+   *
+   * @return array
+   *   The settings array.
    */
-  public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
-    $page = $form_state->getValue('page');
-    $this->configuration['page'] = $page;
-    parent::submitConfigurationForm($form, $form_state);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function defaultConfiguration() {
-    return parent::defaultConfiguration() + [
+  private function getDefaultBehaviorSettings(ParagraphInterface $paragraph) {
+    $defaults = [
       'page' => 1,
     ];
+    $settings = $paragraph->getAllBehaviorSettings();
+    return (array_key_exists($this->pluginId, $settings) ? $settings[$this->pluginId] : []) + $defaults;
   }
 
   /**
    * {@inheritdoc}
    */
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
-    $_form_state = $form_state->getCompleteFormState();
     $wrapper_id = Html::getUniqueId('form-wrapper-plan-attachment-map-behavior-config');
 
-    $subform = [
-      '#type' => 'container',
-      '#attributes' => [
-        'id' => $wrapper_id,
-      ],
-    ];
+    // Provide an anchor fo AJAX, so that we know what to replace.
+    $form['#attributes']['id'] = $wrapper_id;
 
-    $page = $_form_state->has('page') ? $_form_state->get('page') : 1;
-    $subform['page'] = [
+    // Get the form defaults from the paragraph.
+    $defaults = $this->getDefaultBehaviorSettings($paragraph);
+
+    $page = $form_state->has('page') ? $form_state->get('page') : $defaults['page'];
+    $form['page'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Current page'),
       '#default_value' => $page,
@@ -78,8 +78,8 @@ class ParagraphsMapBehavior extends ParagraphsBehaviorBase {
       '#value' => $page,
     ];
 
-    if ($_form_state->has('page') && $_form_state->get('page') > 1) {
-      $subform['actions']['back'] = [
+    if ($page && $page > 1) {
+      $form['actions']['back'] = [
         '#type' => 'button',
         '#name' => 'back-button',
         '#button_type' => 'primary',
@@ -96,7 +96,7 @@ class ParagraphsMapBehavior extends ParagraphsBehaviorBase {
       ];
     }
 
-    $subform['actions']['next'] = [
+    $form['actions']['next'] = [
       '#type' => 'button',
       '#name' => 'next-button',
       '#button_type' => 'primary',
@@ -112,7 +112,6 @@ class ParagraphsMapBehavior extends ParagraphsBehaviorBase {
       ],
     ];
 
-    $form['wrapper'] = $subform;
     return parent::buildBehaviorForm($paragraph, $form, $form_state);
   }
 
@@ -134,22 +133,31 @@ class ParagraphsMapBehavior extends ParagraphsBehaviorBase {
       return;
     }
 
+    // Get the complete form so that we can extract the paragraph entity and
+    // our subform.
     $form = $form_state->getCompleteForm();
 
+    // Extract the action and go up till the level of actual non-button form
+    // elements.
     $array_parents = $triggering_element['#array_parents'];
     $action = array_pop($array_parents);
     array_pop($array_parents);
 
+    // Get the subform and check that the current action is actually defined
+    // there.
     $subform = NestedArray::getValue($form, $array_parents);
     if (!in_array($action, array_keys($subform['actions']))) {
       return;
     }
 
-    $parents = $triggering_element['#parents'];
-    array_pop($parents);
-    array_pop($parents);
+    // Get the paragraph.
+    $paragraph = NestedArray::getValue($form_state->getCompleteForm(), array_slice($element['#array_parents'], 0, -4))['#entity'];
 
-    $page = $form_state->has('page') ? $form_state->get('page') : 1;
+    // And it's defaults.
+    $defaults = $this->getDefaultBehaviorSettings($paragraph);
+
+    // Handle the action.
+    $page = $form_state->has('page') ? $form_state->get('page') : $defaults['page'];
     if ($action == 'next') {
       $page++;
     }
@@ -159,15 +167,6 @@ class ParagraphsMapBehavior extends ParagraphsBehaviorBase {
 
     // Set the new page in the storage.
     $form_state->set('page', $page);
-
-    // This doesn't seem to work.
-    $values = $form_state->getValues();
-    $step_values = NestedArray::getValue($values, $parents);
-    $step_values['page'] = $page;
-    $form_state->setValue($parents, $step_values);
-
-    // This doesn't seem to have an effect.
-    $form_state->setRebuild();
   }
 
   /**
@@ -194,11 +193,11 @@ class ParagraphsMapBehavior extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function submitBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
-    // This only get's called when the paragraph settings are submitted.
+    // This get's called when the paragraph settings are submitted.
+    $values = $form_state->getValues();
     $paragraph->setBehaviorSettings($this->pluginId, [
-      'page', $form_state->getValue('page'),
+      'page' => $values['page'],
     ]);
-    parent::submitBehaviorForm($paragraph, $form, $form_state);
   }
 
 }
