@@ -1,10 +1,18 @@
 uuid: 2b29b366-5748-43c0-8d00-a7fef9c97891
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - ocha_datawrapper
 id: datawrapper_chart
 label: 'Datawrapper chart'
 icon_uuid: null
 icon_default: null
 description: ''
-behavior_plugins: {  }
+behavior_plugins:
+  ocha_datawrapper_demo_behavior:
+    enabled: true
+    map_style: a
+    default_attachment:
+      b: b
+    monitoring_period: c
