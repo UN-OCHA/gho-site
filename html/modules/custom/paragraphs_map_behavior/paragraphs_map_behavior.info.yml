@@ -1,0 +1,7 @@
+name: 'Paragraphs Map Behavior'
+type: module
+description: 'Provides a map behavior for paragraph entities'
+core: 8.x
+package: 'Custom'
+dependencies:
+  - paragraphs:paragraphs

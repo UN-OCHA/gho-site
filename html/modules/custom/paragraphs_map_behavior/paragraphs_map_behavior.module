@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains paragraphs_map_behavior.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function paragraphs_map_behavior_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the paragraphs_map_behavior module.
+    case 'help.page.paragraphs_map_behavior':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides a map behavior for a paragraph') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function paragraphs_map_behavior_theme() {
+  return [
+    'paragraphs_map_behavior' => [
+      'render element' => 'children',
+    ],
+  ];
+}
