@@ -1,7 +1,0 @@
-paragraphs.behavior.settings.paragraphs_map_behavior_behavior:
-  type: paragraphs.behavior.settings_base
-  label: 'Paragraphs Map Behavior Settings'
-  mapping:
-    page:
-      type: text
-      label: 'The current page in the configuration screen'

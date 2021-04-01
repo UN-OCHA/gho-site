@@ -1,0 +1,28 @@
+diff --git a/src/Plugin/Field/FieldWidget/LayoutParagraphsWidget.php b/src/Plugin/Field/FieldWidget/LayoutParagraphsWidget.php
+index c253ba3..e7d2e6c 100644
+--- a/src/Plugin/Field/FieldWidget/LayoutParagraphsWidget.php
++++ b/src/Plugin/Field/FieldWidget/LayoutParagraphsWidget.php
+@@ -951,6 +951,11 @@ class LayoutParagraphsWidget extends WidgetBase implements ContainerFactoryPlugi
+     $widget_state = static::getWidgetState($parents, $this->fieldName, $form_state);
+     $delta = $widget_state['open_form'];
+ 
++    $element_parents = $parents;
++    $element_parents[] = $this->fieldName;
++    $element_parents[] = $delta;
++    $element_parents[] = 'subform';
++
+     /** @var \Drupal\paragraphs\Entity\Paragraph $entity */
+     $entity = $widget_state['items'][$delta]['entity'];
+     // Set correct default language for the entity.
+@@ -1148,7 +1153,10 @@ class LayoutParagraphsWidget extends WidgetBase implements ContainerFactoryPlugi
+         '#weight' => -99,
+       ];
+       foreach ($behavior_plugins as $plugin_id => $plugin) {
+-        $element['entity_form']['behavior_plugins'][$plugin_id] = ['#type' => 'container'];
++        $element['entity_form']['behavior_plugins'][$plugin_id] = [
++          '#type' => 'container',
++          '#parents' => array_merge(array_slice($element_parents, 0, -1), ['behavior_plugins', $plugin_id]),
++        ];
+         $subform_state = SubformState::createForSubform($element['entity_form']['behavior_plugins'][$plugin_id], $form, $form_state);
+         $plugin_form = $plugin->buildBehaviorForm($entity, $element['entity_form']['behavior_plugins'][$plugin_id], $subform_state);
+         if (!empty(Element::children($plugin_form))) {
