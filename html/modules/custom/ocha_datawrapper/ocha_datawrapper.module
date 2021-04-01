@@ -1,0 +1,73 @@
+<?php
+
+/**
+ * @file
+ * Contains ocha_datawrapper.module.
+ */
+
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Render\Markup;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\field\Entity\FieldStorageConfig;
+
+/**
+ * Implements hook_help().
+ */
+function ocha_datawrapper_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the ocha_datawrapper module.
+    case 'help.page.ocha_datawrapper':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Datawrapper integration') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function ocha_datawrapper_theme() {
+  return [
+    'ocha_datawrapper' => [
+      'render element' => 'children',
+    ],
+  ];
+}
+
+/**
+ * Get a list of published charts.
+ */
+function ocha_datawrapper_chart_list(FieldStorageConfig $definition, ContentEntityInterface $entity = NULL, $cacheable) {
+  $http_client = \Drupal::httpClient();
+  $response = $http_client->request(
+    'GET',
+    'https://api.datawrapper.de/v3/charts',
+    [
+      'headers' => [
+        'authorization' => 'Bearer ' . \Drupal::config('ocha_datawrapper.chartoverview')->get('api_key'),
+      ],
+    ]
+  );
+
+  $body = $response->getBody() . '';
+  $body = json_decode($body, TRUE);
+
+  $options = [];
+  foreach ($body['list'] as $chart) {
+    $options[$chart['id']] = $chart['title'] . Markup::create('<img style="max-width: 150px;max-height: 150px;" src="' . $chart['thumbnails']['plain'] . '">');
+  }
+
+  return $options;
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function ocha_datawrapper_preprocess_paragraph__datawrapper_chart(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $variables['datawrapperkey'] = $paragraph->get('field_para_chart')->first()->value;
+}

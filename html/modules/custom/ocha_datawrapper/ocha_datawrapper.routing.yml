@@ -1,0 +1,7 @@
+ocha_datawrapper.chart_overview_form:
+  path: '/ocha_datawrapper/form/chart_overview'
+  defaults:
+    _form: '\Drupal\ocha_datawrapper\Form\ChartOverviewForm'
+    _title: 'ChartOverviewForm'
+  requirements:
+    _access: 'TRUE'

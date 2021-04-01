@@ -1,0 +1,21 @@
+uuid: d3c8e501-bcf4-4655-999f-e2ba5ae748d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_para_chart
+    - paragraphs.paragraphs_type.datawrapper_chart
+  module:
+    - options
+id: paragraph.datawrapper_chart.field_para_chart
+field_name: field_para_chart
+entity_type: paragraph
+bundle: datawrapper_chart
+label: Chart
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

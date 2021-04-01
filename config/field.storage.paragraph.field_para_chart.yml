@@ -1,0 +1,21 @@
+uuid: 7e6288c4-2b2d-404d-9155-7f642e43431f
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_para_chart
+field_name: field_para_chart
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values: {  }
+  allowed_values_function: ocha_datawrapper_chart_list
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

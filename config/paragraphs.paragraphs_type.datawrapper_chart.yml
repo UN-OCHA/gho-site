@@ -1,0 +1,16 @@
+uuid: 2b29b366-5748-43c0-8d00-a7fef9c97891
+langcode: en
+status: true
+dependencies:
+  module:
+    - ocha_datawrapper
+id: datawrapper_chart
+label: 'Datawrapper chart'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins:
+  ocha_datawrapper_data_behavior:
+    enabled: true
+  ocha_datawrapper_demo_behavior:
+    enabled: true
