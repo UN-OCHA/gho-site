@@ -222,3 +222,16 @@ function gho_general_flag_untranslated($entity_key, array &$variables) {
     }
   }
 }
+
+/**
+ * Implements hook_entity_type_alter().
+ *
+ * @see https://www.drupal.org/project/drupal/issues/2955321
+ */
+function gho_general_entity_type_alter(array &$entity_types) {
+  foreach ($entity_types as $entity_type) {
+    $constraints = $entity_type->getConstraints();
+    unset($constraints['EntityUntranslatableFields']);
+    $entity_type->setConstraints($constraints);
+  }
+}
