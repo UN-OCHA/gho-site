@@ -1,0 +1,14 @@
+uuid: 9d7145a7-c7b9-4bc4-a7d4-2a90bee035bf
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.workspace_visitor
+  module:
+    - user
+id: user_remove_role_action.workspace_visitor
+label: 'Remove the Workspace visitor role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: workspace_visitor
