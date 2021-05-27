@@ -1,0 +1,11 @@
+uuid: 25bac8ac-defc-44ef-88cb-9f74d72376dd
+langcode: en
+status: true
+dependencies: {  }
+id: workspace_visitor
+label: 'Workspace visitor'
+weight: -5
+is_admin: null
+permissions:
+  - 'administer workspaces'
+  - 'view any workspace'
