@@ -11,6 +11,7 @@ is_admin: false
 permissions:
   - 'access content'
   - 'download article'
+  - 'view any workspace'
   - 'view media'
   - 'view own unpublished media'
   - 'view published achievement content'
