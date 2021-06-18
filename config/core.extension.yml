@@ -55,6 +55,8 @@ module:
   path_alias: 0
   redirect: 0
   redis: 0
+  replicate: 0
+  replicate_ui: 0
   responsive_image: 0
   social_api: 0
   social_auth: 0
@@ -68,10 +70,10 @@ module:
   update: 0
   user: 0
   views_ui: 0
+  workspaces: 0
   pathauto: 1
   content_translation: 10
   views: 10
-  workspaces: 0
   paragraphs: 11
   minimal: 1000
 theme:
