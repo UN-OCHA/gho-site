@@ -30,6 +30,13 @@ class RouteSubscriber extends RouteSubscriberBase {
         $route->setOption('_admin_route', TRUE);
       }
     }
+
+    // Add workspace check on activate link.
+    if ($route = $collection->get('entity.workspace.activate_form')) {
+      $requirements = ['_has_active_workspace' => 'FALSE'];
+      $requirements += $route->getRequirements();
+      $route->setRequirements($requirements);
+    }
   }
 
 }
