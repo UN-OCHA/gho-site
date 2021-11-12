@@ -12,46 +12,48 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    - name: Configure AWS Credentials
-      id: aws
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
 
-    - name: Checkout code
-      id: checkout
-      uses: actions/checkout@v1
+    steps:
+      - name: Configure AWS Credentials
+        id: aws
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
 
-    - name: Determine environment type
-      id: env
-      uses: docker://ghcr.io/un-ocha/actions:determine-environment-main
+      - name: Checkout code
+        id: checkout
+        uses: actions/checkout@v1
 
-    - name: Build docker image
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      run: |
-        export DOCKER_TAG="${GITHUB_REF#refs/*/}"
-        export DOCKER_TAG=${DOCKER_TAG//[^[:alnum:].-]/-}
-        echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
-        docker build \
-            --build-arg BRANCH_ENVIRONMENT=${BRANCH_ENVIRONMENT} \
-            --build-arg VCS_REF=`git rev-parse --short HEAD` \
-            --build-arg VCS_URL=`git config --get remote.origin.url | sed 's#git@github.com:#https://github.com/#'` \
-            --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-            --build-arg GITHUB_ACTOR=${GITHUB_ACTOR} \
-            --build-arg GITHUB_REPOSITORY=${GITHUB_REPOSITORY} \
-            --build-arg GITHUB_SHA=${GITHUB_SHA} \
-            --build-arg GITHUB_REF=${GITHUB_REF} \
-         . --file docker/Dockerfile --tag unocha/gho-site:${DOCKER_TAG}
-        docker push unocha/gho-site:${DOCKER_TAG}
+      - name: Determine environment type
+        id: env
+        uses: docker://ghcr.io/un-ocha/actions:determine-environment-main
 
-    - name: Flowdock Notify
-      uses: docker://ghcr.io/un-ocha/actions:flowdock-notify-main
-      env:
-        FLOWDOCK_TOKEN: ${{ secrets.FLOWDOCK_TOKEN }}
-        FLOWDOCK_ICON: 'package'
-        FLOWDOCK_MESSAGE: 'Built a new `unocha/gho-site` image from ${{ github.ref }} and pushed to [DockerHub](https://hub.docker.com/r/unocha/gho-site/tags).'
-        FLOWDOCK_TAGS: 'build,docker,${{ github.actor }}'
+      - name: Build docker image
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          export DOCKER_TAG="${GITHUB_REF#refs/*/}"
+          export DOCKER_TAG=${DOCKER_TAG//[^[:alnum:].-]/-}
+          echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
+          docker build \
+              --build-arg BRANCH_ENVIRONMENT=${BRANCH_ENVIRONMENT} \
+              --build-arg VCS_REF=`git rev-parse --short HEAD` \
+              --build-arg VCS_URL=`git config --get remote.origin.url | sed 's#git@github.com:#https://github.com/#'` \
+              --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+              --build-arg GITHUB_ACTOR=${GITHUB_ACTOR} \
+              --build-arg GITHUB_REPOSITORY=${GITHUB_REPOSITORY} \
+              --build-arg GITHUB_SHA=${GITHUB_SHA} \
+              --build-arg GITHUB_REF=${GITHUB_REF} \
+           . --file docker/Dockerfile --tag unocha/gho-site:${DOCKER_TAG}
+          docker push unocha/gho-site:${DOCKER_TAG}
+
+      - name: Flowdock Notify
+        uses: docker://ghcr.io/un-ocha/actions:flowdock-notify-main
+        env:
+          FLOWDOCK_TOKEN: ${{ secrets.FLOWDOCK_TOKEN }}
+          FLOWDOCK_ICON: 'package'
+          FLOWDOCK_MESSAGE: 'Built a new `unocha/gho-site` image from ${{ github.ref }} and pushed to [DockerHub](https://hub.docker.com/r/unocha/gho-site/tags).'
+          FLOWDOCK_TAGS: 'build,docker,${{ github.actor }}'
