@@ -171,6 +171,18 @@
 }
 
 /*------------------------------------------------------------------------------
+ * Styling of the Article Card List
+ *----------------------------------------------------------------------------*/
+.paragraph--type--article-card-list .field--name-field-articles {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+}
+.paragraph--type--article-card-list .field--name-field-articles .field__item {
+  flex: 0 0 calc((100% / 3) - 2rem);
+}
+
+/*------------------------------------------------------------------------------
  * Editorial indication for unpublished/untranslated entities.
  *----------------------------------------------------------------------------*/
 .node--unpublished {
@@ -187,4 +199,3 @@
 .user-logged-in [class*='--unpublished'][class*='--untranslated'] {
   outline: 4px solid #c30;
 }
-
