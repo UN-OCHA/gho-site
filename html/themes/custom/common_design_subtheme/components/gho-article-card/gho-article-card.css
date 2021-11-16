@@ -63,7 +63,7 @@
 }
 
 /* Article title */
-.gho-article-card .gho-article-card__title {
+.gho-article-card__title {
   margin: 1em 0;
   padding: 0 1rem;
   color: var(--cd-black);
@@ -72,7 +72,7 @@
 }
 
 /* Text summary */
-.gho-article-card .field--name-field-summary {
+.gho-article-card__summary {
   margin: 1rem 0;
   padding: 0 1rem;
 }
