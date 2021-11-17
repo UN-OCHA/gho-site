@@ -89,7 +89,7 @@
     'clearfix',
   ]
 %}
-{% set text = content.field_summary|render|striptags %}
+{% set text = content.field_summary|render|striptags|trim %}
 {% set summary_trimmed = text|length > 120 ? text|slice(0, 121)|split(' ')|slice(0, -1)|join(' ') ~ '…' : text %}
 <article{{ attributes.addClass(classes) }}>
   <div{{ content_attributes.addClass('node__content').addClass('gho-article-card__content') }}>
